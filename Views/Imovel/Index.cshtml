@@ -1,0 +1,43 @@
+@model IEnumerable<Imobiliaria.Models.Imovel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Tipos de Imóveis</h1>
+
+<p>
+    <a asp-action="Create">Criar Novo</a>
+</p>
+
+<form asp-controller="Imovel" asp-action="Index">
+    <p>
+        Tipo/Descrição: <input type="text" name="searchString" />
+        <input type="submit" value="Filtrar" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>Tipo</th>
+            <th>Descricao</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+   <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+           
+            <td>@Html.DisplayFor(modelItem => item.Tipo)</td>
+            <td>@Html.DisplayFor(modelItem => item.Descricao)</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+            </td>
+        </tr>
+    }
+</table>
